@@ -22,6 +22,10 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
   void initState() {
     super.initState();
     _controller.addListener(() => _extension = _controller.text);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _retrieveLostFiles();
+    });
   }
 
   void _openFileExplorer() async {
@@ -44,6 +48,21 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
     if (!mounted) return;
     setState(() {
       _loadingPath = false;
+      _fileName = _paths != null ? _paths.map((e) => e.name).toString() : '...';
+    });
+  }
+
+  void _retrieveLostFiles() async {
+    try {
+      final lostData = (await FilePicker.platform.retrieveLostData());
+      _paths = lostData.result?.files;
+    } on PlatformException catch (e) {
+      print("Unsupported operation" + e.toString());
+    } catch (ex) {
+      print(ex);
+    }
+    if (!mounted) return;
+    setState(() {
       _fileName = _paths != null ? _paths.map((e) => e.name).toString() : '...';
     });
   }
