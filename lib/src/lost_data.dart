@@ -26,7 +26,7 @@ class LostData {
   /// The file that was lost in a previous [pickFiles] call due to MainActivity being destroyed.
   ///
   /// Can be null if [exception] exists.
-  final FilePickerResult result;
+  final FilePickerResult? result;
 
   /// The exception of the last [pickFiles].
   ///
