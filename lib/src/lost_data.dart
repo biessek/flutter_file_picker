@@ -35,7 +35,7 @@ class LostData {
   /// You should handle this exception as if the [pickFiles] got an exception when the MainActivity was not destroyed.
   ///
   /// Note that it is not the exception that caused the destruction of the MainActivity.
-  final PlatformException exception;
+  final PlatformException? exception;
 
   bool _empty = false;
 }

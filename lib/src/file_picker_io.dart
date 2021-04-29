@@ -123,7 +123,7 @@ class FilePickerIO extends FilePicker {
   @override
   Future<LostData> retrieveLostData() async {
     try {
-      final Map<String, dynamic> result =
+      final Map<String, dynamic>? result =
           await _channel.invokeMapMethod<String, dynamic>('retrieve');
 
       if (result == null) {
@@ -133,7 +133,7 @@ class FilePickerIO extends FilePicker {
       assert(result.containsKey('filePickerResult') ^
           result.containsKey('errorCode'));
 
-      PlatformException exception;
+      PlatformException? exception;
       if (result.containsKey('errorCode')) {
         exception = PlatformException(
           code: result['errorCode'],
@@ -141,7 +141,7 @@ class FilePickerIO extends FilePicker {
         );
       }
 
-      FilePickerResult filePickerResult;
+      FilePickerResult? filePickerResult;
       if (result.containsKey('filePickerResult')) {
         final list = result['filePickerResult'];
         filePickerResult = FilePickerResult(

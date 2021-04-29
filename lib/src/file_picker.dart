@@ -62,7 +62,7 @@ abstract class FilePicker extends PlatformInterface {
   /// Returns [null] if aborted.
   /// In Android, the MainActivity can be destroyed for various reasons. If that happens, the result will be lost
   /// in this call. You can then call [retrieveLostData] when your app relaunches to retrieve the lost data.
-  Future<FilePickerResult> pickFiles({
+  Future<FilePickerResult?> pickFiles({
     FileType type = FileType.any,
     List<String>? allowedExtensions,
     Function(FilePickerStatus)? onFileLoading,
